@@ -1,0 +1,16 @@
+SELECT category, price, item_name
+FROM superstore
+ORDER BY category;
+
+SELECT item_name, price
+FROM superstore
+ORDER BY price;
+
+SELECT item_name, average_rating, stock_quantity
+FROM superstore
+ORDER BY stock_quantity desc;
+
+SELECT stock_quantity, item_name, category
+FROM superstore
+ORDER BY stock_quantity desc;
+
