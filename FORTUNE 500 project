@@ -1,0 +1,44 @@
+--Do each of the following at least once:
+--Group the data in a new way using a CASE statement.
+--Use a HAVING clause to determine something interesting about the data per category.
+--Use logical operators like AND or OR to filter the data in an interesting way.
+--Use an aggregate function like AVG, SUM, COUNT, MAX, and/or MIN to return summary statistics about the data.
+
+
+SELECT company_name, industry
+,CASE WHEN avg_employee_tenure >= 7 THEN "7+ yr"
+WHEN avg_employee_tenure >= 5 THEN "5+ yr"
+ELSE "5 or less yr"
+END AS "overall_tenure"
+FROM fortune_companies
+ORDER BY overall_tenure
+;
+
+--^ the above query informed me the overall tenure of employees based on industry, suggesting that telecommunications has the least tenure
+
+SELECT * 
+FROM fortune_companies
+ORDER BY revenue;
+
+SELECT industry, SUM(revenue) AS industry_revenue
+FROM fortune_companies
+GROUP BY industry
+HAVING industry_revenue>1000
+;
+
+--^the above query showed me which industries generated the most revenue, in what order, and which companies only generated amounts of over 1000
+
+SELECT company_name, industry
+FROM fortune_companies
+WHERE healthcare_benefits=1
+AND paid_time_off_days<=20
+;
+
+--^this query was able to inform me which companies and which industries offer health benefits and have the most PTO 
+
+SELECT industry, SUM(employees) AS total_workers
+FROM fortune_companies
+GROUP BY industry
+;
+
+--^this query was informative in telling me which industries had the most employees
