@@ -1,44 +1,54 @@
 --Do each of the following at least once:
+
 --Group the data in a new way using a CASE statement.
---Use a HAVING clause to determine something interesting about the data per category.
---Use logical operators like AND or OR to filter the data in an interesting way.
---Use an aggregate function like AVG, SUM, COUNT, MAX, and/or MIN to return summary statistics about the data.
 
-
-SELECT company_name, industry
-,CASE WHEN avg_employee_tenure >= 7 THEN "7+ yr"
-WHEN avg_employee_tenure >= 5 THEN "5+ yr"
-ELSE "5 or less yr"
+SELECT company_name
+,industry
+,healthcare_benefits
+,CASE WHEN avg_employee_tenure>=7 THEN "7+YR"
+WHEN avg_employee_tenure>=5 THEN "5+YR"
+ELSE "LESS THAN 5YR"
 END AS "overall_tenure"
 FROM fortune_companies
-ORDER BY overall_tenure
-;
+ORDER BY healthcare_benefits desc;
 
---^ the above query informed me the overall tenure of employees based on industry, suggesting that telecommunications has the least tenure
+--Use a HAVING clause to determine something interesting about the data per category.
 
-SELECT * 
-FROM fortune_companies
-ORDER BY revenue;
-
-SELECT industry, SUM(revenue) AS industry_revenue
+SELECT industry
+,SUM(revenue) 
+AS industry_revenue
 FROM fortune_companies
 GROUP BY industry
-HAVING industry_revenue>1000
-;
+HAVING industry_revenue>1000;
 
---^the above query showed me which industries generated the most revenue, in what order, and which companies only generated amounts of over 1000
+--Use logical operators like AND or OR to filter the data in an interesting way.
 
-SELECT company_name, industry
+SELECT industry
+,company_name
+,healthcare_benefits
+,paid_time_off_days
 FROM fortune_companies
 WHERE healthcare_benefits=1
-AND paid_time_off_days<=20
-;
+AND paid_time_off_days>15;
 
---^this query was able to inform me which companies and which industries offer health benefits and have the most PTO 
+--Use an aggregate function like AVG, SUM, COUNT, MAX, and/or MIN to return summary statistics about the data.
 
-SELECT industry, SUM(employees) AS total_workers
+SELECT AVG(paid_time_off_days)
+,avg_employee_tenure
+,industry
 FROM fortune_companies
-GROUP BY industry
-;
+GROUP BY industry;
 
---^this query was informative in telling me which industries had the most employees
+SELECT AVG(avg_employee_tenure)
+,company_name
+,healthcare_benefits
+FROM fortune_companies
+WHERE healthcare_benefits=1
+AND industry="Technology"
+GROUP BY company_name
+ORDER BY avg_employee_tenure;
+
+SELECT healthcare_benefits
+,company_name
+FROM fortune_companies
+WHERE industry="Technology";
