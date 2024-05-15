@@ -1,0 +1,21 @@
+--Which medications has Dr. Garcia prescribed? Your results should include Dr. Garcia's name in one column and the different medication names they've prescribed in the other. 
+
+SELECT 
+medication_name
+,doctor_name
+FROM medication
+INNER JOIN prescriptions
+ON medication.person_ID = prescriptions.person_ID
+WHERE doctor_name = 'Dr. Garcia'
+;
+
+--Zonkify is no longer on the market. When were all the Zonkify prescriptions last filled? 
+
+SELECT
+medication_name
+,date_filled
+FROM medication
+INNER JOIN prescriptions
+ON medication.person_ID = prescriptions.person_ID
+WHERE medication_name = "Zonkify"
+ORDER BY date_filled;
