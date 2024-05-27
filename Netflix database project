@@ -1,21 +1,3 @@
---Try to figure out which attribute you'd use to join the two Netflix tables. How can you see what attributes (aka columns) there are in each table to find out what they have in common?
-
-SELECT *
-FROM "netflix_titles_info";
-SELECT * 
-FROM "netflix_people";
-
---Using the PostgreSQL dialect, write a join to select a few columns from both tables at the same time.
-
-SELECT "type"
-,"title"
-,"cast"
-,"release_year"
-FROM "netflix_titles_info"
-LEFT JOIN "netflix_people"
-ON netflix_titles_info.show_id=netflix_people.show_id
-ORDER BY "release_year";
-
 --How many movie titles are there in the database? (movies only, not tv shows)
 
 SELECT COUNT(*)
