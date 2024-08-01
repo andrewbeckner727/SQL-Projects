@@ -1,2 +1,3 @@
-THIS REPOSITORY WAS MADE BY ANDREW BECKNER WHILE LEARNING HOW TO OPERATE WITH SQL # SQL-Projects
-HERE HE WILL SHOWCASE HIS ABILITY TO TRANSFORM RAW DATA INTO MEANINGFUL RESULTS IN ORDER TO ANSWER QUESTIONS AND FORM PROJECTIONS
+# SQL-Projects
+Welcome!
+This is a repository made to store & showcase projects I've undertaken using SQL software, to analyze and query data. 
